@@ -25,7 +25,7 @@ export default function AgentCard({ agent }: AgentCardProps) {
         {/* Header */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1e1e2a] text-xl">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1e1e2a] text-xl" suppressHydrationWarning>
               {agent.avatar || "🤖"}
             </div>
             <div>

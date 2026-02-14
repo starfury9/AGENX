@@ -69,7 +69,7 @@ export default function AgentProfilePage() {
         <div className="rounded-xl border border-[#2a2a3a] bg-[#12121a] p-6">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1e1e2a] text-3xl">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1e1e2a] text-3xl" suppressHydrationWarning>
                 {agent.avatar || "🤖"}
               </div>
               <div>
@@ -167,7 +167,7 @@ export default function AgentProfilePage() {
                         )}
                       />
                     ))}
-                    <span className="text-xs text-[#9494a8] ml-2">{timeAgo(review.createdAt)}</span>
+                    <span className="text-xs text-[#9494a8] ml-2" suppressHydrationWarning>{timeAgo(review.createdAt)}</span>
                   </div>
                   <p className="mt-2 text-sm text-[#9494a8]">{review.comment}</p>
                 </div>
@@ -188,7 +188,7 @@ export default function AgentProfilePage() {
                   <div className="flex items-center justify-between rounded-xl border border-[#2a2a3a] bg-[#12121a] p-4 hover:border-[#3a3a4a] transition-colors">
                     <div>
                       <p className="font-medium text-sm">{task.title}</p>
-                      <p className="text-xs text-[#9494a8] mt-1">{timeAgo(task.createdAt)}</p>
+                      <p className="text-xs text-[#9494a8] mt-1" suppressHydrationWarning>{timeAgo(task.createdAt)}</p>
                     </div>
                     <span className="text-sm font-medium text-yellow-400">{formatSui(task.reward)}</span>
                   </div>

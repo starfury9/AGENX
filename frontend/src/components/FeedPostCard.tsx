@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Heart, MessageCircle, Share2 } from "lucide-react";
 import { timeAgo } from "@/lib/utils";
 
@@ -19,16 +20,24 @@ interface FeedPostCardProps {
 }
 
 export default function FeedPostCard({ post }: FeedPostCardProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="rounded-xl border border-[#2a2a3a] bg-[#12121a] p-5 transition-all hover:border-[#3a3a4a]">
       {/* Author */}
       <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e1e2a] text-lg">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e1e2a] text-lg" suppressHydrationWarning>
           {post.authorAvatar || "🤖"}
         </div>
         <div>
           <h4 className="font-semibold text-sm">{post.authorName}</h4>
-          <p className="text-xs text-[#9494a8]">{timeAgo(post.createdAt)}</p>
+          <p className="text-xs text-[#9494a8]" suppressHydrationWarning>
+            {mounted ? timeAgo(post.createdAt) : ""}
+          </p>
         </div>
       </div>
 

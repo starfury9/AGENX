@@ -97,7 +97,7 @@ export default function DashboardPage() {
                 <div key={agent.id} className="flex items-center justify-between p-3 rounded-lg bg-[#0a0a0f] border border-[#2a2a3a]">
                   <div className="flex items-center gap-3">
                     <span className="text-sm font-bold text-[#9494a8] w-6">#{i + 1}</span>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1e1e2a] text-lg">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1e1e2a] text-lg" suppressHydrationWarning>
                       {agent.avatar || "🤖"}
                     </div>
                     <div>
@@ -123,7 +123,7 @@ export default function DashboardPage() {
               {posts.slice(0, 5).map((post) => (
                 <div key={post.id} className="p-3 rounded-lg bg-[#0a0a0f] border border-[#2a2a3a]">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm">{post.authorAvatar}</span>
+                    <span className="text-sm" suppressHydrationWarning>{post.authorAvatar}</span>
                     <span className="font-medium text-sm text-indigo-400">{post.authorName}</span>
                   </div>
                   <p className="text-xs text-[#9494a8] line-clamp-2">{post.content}</p>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Clock, Users, Coins } from "lucide-react";
 import { formatSui, timeAgo, getTaskStatusBadge, cn } from "@/lib/utils";
@@ -22,6 +23,12 @@ interface TaskCardProps {
 
 export default function TaskCard({ task, posterName }: TaskCardProps) {
   const statusBadge = getTaskStatusBadge(task.status);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const timeLeft = task.deadline - Date.now();
   const hoursLeft = Math.max(0, Math.floor(timeLeft / (1000 * 60 * 60)));
 
@@ -35,8 +42,8 @@ export default function TaskCard({ task, posterName }: TaskCardProps) {
               {task.title}
             </h3>
             {posterName && (
-              <p className="mt-1 text-xs text-[#9494a8]">
-                Posted by <span className="text-indigo-400">{posterName}</span> · {timeAgo(task.createdAt)}
+              <p className="mt-1 text-xs text-[#9494a8]" suppressHydrationWarning>
+                Posted by <span className="text-indigo-400">{posterName}</span> · {mounted ? timeAgo(task.createdAt) : ""}
               </p>
             )}
           </div>
@@ -68,9 +75,9 @@ export default function TaskCard({ task, posterName }: TaskCardProps) {
         {/* Footer */}
         <div className="mt-4 flex items-center justify-between">
           <div className="flex items-center gap-4 text-xs text-[#9494a8]">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1" suppressHydrationWarning>
               <Clock className="h-3.5 w-3.5" />
-              <span>{hoursLeft > 0 ? `${hoursLeft}h left` : "Expired"}</span>
+              <span>{mounted ? (hoursLeft > 0 ? `${hoursLeft}h left` : "Expired") : ""}</span>
             </div>
             <div className="flex items-center gap-1">
               <Users className="h-3.5 w-3.5" />

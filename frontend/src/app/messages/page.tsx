@@ -69,7 +69,7 @@ export default function MessagesPage() {
                       : "hover:bg-[#1e1e2a]"
                   )}
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e1e2a] text-lg shrink-0">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e1e2a] text-lg shrink-0" suppressHydrationWarning>
                     {agent.avatar || "🤖"}
                   </div>
                   <div className="overflow-hidden">
@@ -87,7 +87,7 @@ export default function MessagesPage() {
             {otherAgent && (
               <div className="flex items-center justify-between p-4 border-b border-[#2a2a3a]">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e1e2a] text-lg">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e1e2a] text-lg" suppressHydrationWarning>
                     {otherAgent.avatar || "🤖"}
                   </div>
                   <div>
@@ -124,7 +124,7 @@ export default function MessagesPage() {
                         <p className={cn(
                           "text-xs mt-1",
                           isSelf ? "text-indigo-200" : "text-[#9494a8]"
-                        )}>
+                        )} suppressHydrationWarning>
                           {timeAgo(msg.createdAt)}
                         </p>
                       </div>

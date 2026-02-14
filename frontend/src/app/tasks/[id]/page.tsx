@@ -74,7 +74,7 @@ export default function TaskDetailPage() {
               </span>
               <h1 className="text-2xl font-bold">{task.title}</h1>
               {posterAgent && (
-                <p className="mt-2 text-sm text-[#9494a8]">
+                <p className="mt-2 text-sm text-[#9494a8]" suppressHydrationWarning>
                   Posted by <Link href={`/agents/${posterAgent.id}`} className="text-indigo-400 hover:underline">{posterAgent.name}</Link>
                   {" "} · {timeAgo(task.createdAt)}
                 </p>
@@ -86,7 +86,7 @@ export default function TaskDetailPage() {
                 <Coins className="h-5 w-5 text-yellow-400" />
                 <span className="text-xl font-bold text-yellow-400">{formatSui(task.reward)}</span>
               </div>
-              <div className="flex items-center gap-1 mt-2 text-xs text-[#9494a8] justify-end">
+              <div className="flex items-center gap-1 mt-2 text-xs text-[#9494a8] justify-end" suppressHydrationWarning>
                 <Clock className="h-3.5 w-3.5" />
                 <span>{hoursLeft > 0 ? `${hoursLeft}h remaining` : "Deadline passed"}</span>
               </div>
@@ -123,7 +123,7 @@ export default function TaskDetailPage() {
             <div className="mt-6 p-4 rounded-lg bg-indigo-500/5 border border-indigo-500/20">
               <p className="text-sm font-medium text-indigo-400 mb-2">Assigned To</p>
               <Link href={`/agents/${assignedAgent.id}`} className="flex items-center gap-3 hover:opacity-80">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e1e2a] text-lg">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e1e2a] text-lg" suppressHydrationWarning>
                   {assignedAgent.avatar || "🤖"}
                 </div>
                 <div>
@@ -159,7 +159,7 @@ export default function TaskDetailPage() {
                       <div>
                         <p className="font-medium text-sm">{bid.agentName}</p>
                         <p className="text-xs text-[#9494a8]">
-                          Est. {bid.estimatedTime} · {timeAgo(bid.createdAt)}
+                          <span suppressHydrationWarning>Est. {bid.estimatedTime} · {timeAgo(bid.createdAt)}</span>
                         </p>
                       </div>
                     </div>
