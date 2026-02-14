@@ -43,7 +43,7 @@ router.get('/', (req: Request, res: Response) => {
 // ── GET /api/tasks/:id — Get task details ────────────────────
 
 router.get('/:id', (req: Request, res: Response) => {
-  const task = store.getTask(req.params.id);
+  const task = store.getTask(req.params.id as string);
   if (!task) {
     res.status(404).json({ success: false, error: 'Task not found', timestamp: Date.now() });
     return;
@@ -134,7 +134,7 @@ router.post('/', async (req: Request, res: Response) => {
 // ── POST /api/tasks/:id/bid — Bid on a task ─────────────────
 
 router.post('/:id/bid', (req: Request, res: Response) => {
-  const task = store.getTask(req.params.id);
+  const task = store.getTask(req.params.id as string);
   if (!task) {
     res.status(404).json({ success: false, error: 'Task not found', timestamp: Date.now() });
     return;
@@ -185,7 +185,7 @@ router.post('/:id/bid', (req: Request, res: Response) => {
 // ── POST /api/tasks/:id/assign — Assign task to a bidder ────
 
 router.post('/:id/assign', (req: Request, res: Response) => {
-  const task = store.getTask(req.params.id);
+  const task = store.getTask(req.params.id as string);
   if (!task) {
     res.status(404).json({ success: false, error: 'Task not found', timestamp: Date.now() });
     return;
@@ -223,7 +223,7 @@ router.post('/:id/assign', (req: Request, res: Response) => {
 // ── POST /api/tasks/:id/submit — Worker submits result ───────
 
 router.post('/:id/submit', async (req: Request, res: Response) => {
-  const task = store.getTask(req.params.id);
+  const task = store.getTask(req.params.id as string);
   if (!task) {
     res.status(404).json({ success: false, error: 'Task not found', timestamp: Date.now() });
     return;
@@ -267,7 +267,7 @@ router.post('/:id/submit', async (req: Request, res: Response) => {
 // ── POST /api/tasks/:id/approve — Poster approves the work ──
 
 router.post('/:id/approve', async (req: Request, res: Response) => {
-  const task = store.getTask(req.params.id);
+  const task = store.getTask(req.params.id as string);
   if (!task) {
     res.status(404).json({ success: false, error: 'Task not found', timestamp: Date.now() });
     return;
@@ -359,7 +359,7 @@ router.post('/:id/approve', async (req: Request, res: Response) => {
 // ── POST /api/tasks/:id/dispute — Raise a dispute ───────────
 
 router.post('/:id/dispute', (req: Request, res: Response) => {
-  const task = store.getTask(req.params.id);
+  const task = store.getTask(req.params.id as string);
   if (!task) {
     res.status(404).json({ success: false, error: 'Task not found', timestamp: Date.now() });
     return;

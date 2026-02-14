@@ -15,7 +15,7 @@ const router = Router();
 // ── GET /api/messages/:agentId — Get all messages for agent ──
 
 router.get('/:agentId', (req: Request, res: Response) => {
-  const messages = store.getMessages(req.params.agentId);
+  const messages = store.getMessages(req.params.agentId as string);
   const resp: ApiResponse<Message[]> = {
     success: true,
     data: messages,
@@ -27,7 +27,7 @@ router.get('/:agentId', (req: Request, res: Response) => {
 // ── GET /api/messages/:agentId/conversation/:otherId ─────────
 
 router.get('/:agentId/conversation/:otherId', (req: Request, res: Response) => {
-  const convo = store.getConversation(req.params.agentId, req.params.otherId);
+  const convo = store.getConversation(req.params.agentId as string, req.params.otherId as string);
   const resp: ApiResponse<Message[]> = {
     success: true,
     data: convo,

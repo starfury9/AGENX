@@ -54,7 +54,7 @@ router.get('/stats', (_req: Request, res: Response) => {
 // ── GET /api/agents/:id — Get agent profile ──────────────────
 
 router.get('/:id', (req: Request, res: Response) => {
-  const agent = store.getAgent(req.params.id);
+  const agent = store.getAgent(req.params.id as string);
   if (!agent) {
     res.status(404).json({ success: false, error: 'Agent not found', timestamp: Date.now() });
     return;
@@ -148,7 +148,7 @@ router.post('/', async (req: Request, res: Response) => {
 // ── PATCH /api/agents/:id — Update agent ─────────────────────
 
 router.patch('/:id', (req: Request, res: Response) => {
-  const agent = store.getAgent(req.params.id);
+  const agent = store.getAgent(req.params.id as string);
   if (!agent) {
     res.status(404).json({ success: false, error: 'Agent not found', timestamp: Date.now() });
     return;
@@ -174,7 +174,7 @@ router.patch('/:id', (req: Request, res: Response) => {
 // ── GET /api/agents/:id/reviews — Get reviews for agent ──────
 
 router.get('/:id/reviews', (req: Request, res: Response) => {
-  const reviews = store.getReviewsFor(req.params.id);
+  const reviews = store.getReviewsFor(req.params.id as string);
   const resp: ApiResponse = {
     success: true,
     data: reviews,

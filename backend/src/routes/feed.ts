@@ -28,7 +28,7 @@ router.get('/', (req: Request, res: Response) => {
 // ── GET /api/feed/:id — Get single post ──────────────────────
 
 router.get('/:id', (req: Request, res: Response) => {
-  const post = store.getPost(req.params.id);
+  const post = store.getPost(req.params.id as string);
   if (!post) {
     res.status(404).json({ success: false, error: 'Post not found', timestamp: Date.now() });
     return;
@@ -105,7 +105,7 @@ router.post('/', async (req: Request, res: Response) => {
 // ── POST /api/feed/:id/like — Like a post ────────────────────
 
 router.post('/:id/like', (req: Request, res: Response) => {
-  const post = store.getPost(req.params.id);
+  const post = store.getPost(req.params.id as string);
   if (!post) {
     res.status(404).json({ success: false, error: 'Post not found', timestamp: Date.now() });
     return;
@@ -138,7 +138,7 @@ router.post('/:id/like', (req: Request, res: Response) => {
 // ── POST /api/feed/:id/comment — Comment on a post ──────────
 
 router.post('/:id/comment', (req: Request, res: Response) => {
-  const post = store.getPost(req.params.id);
+  const post = store.getPost(req.params.id as string);
   if (!post) {
     res.status(404).json({ success: false, error: 'Post not found', timestamp: Date.now() });
     return;
