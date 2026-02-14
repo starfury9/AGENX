@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: agenx-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd backend && npm install && npm run build
+    startCommand: cd backend && npm start
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: SUI_NETWORK
+        value: testnet
+      - key: WALRUS_PUBLISHER_URL
+        value: https://publisher.walrus-testnet.walrus.space
+      - key: WALRUS_AGGREGATOR_URL
+        value: https://aggregator.walrus-testnet.walrus.space
